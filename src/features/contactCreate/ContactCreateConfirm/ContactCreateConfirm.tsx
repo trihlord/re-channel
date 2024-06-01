@@ -1,18 +1,19 @@
+import {
+  contactCreateActions,
+  selectIsConfirmHidden,
+} from "@/features/contactCreate/slice";
 import { useDispatch, useSelector } from "react-redux";
-import { contactActions, selectIsConfirmHidden } from "../contactSlice";
 
-export function ContactConfirm() {
+export function ContactCreateConfirm() {
   const dispatch = useDispatch();
   const isHidden = useSelector(selectIsConfirmHidden);
 
   function handleCancel() {
-    dispatch(contactActions.cancel());
-    dispatch(contactActions.hideConfirm());
+    dispatch(contactCreateActions.cancelSubmit());
   }
 
   function handleConfirm() {
-    dispatch(contactActions.confirm());
-    dispatch(contactActions.hideConfirm());
+    dispatch(contactCreateActions.confirmSubmit());
   }
 
   return (

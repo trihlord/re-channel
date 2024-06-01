@@ -1,6 +1,6 @@
+import { App } from "@/features/app/App";
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-import { App } from "./App";
 
 import "virtual:uno.css";
 
