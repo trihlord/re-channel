@@ -27,27 +27,27 @@ const contactCreateSlice = createSlice({
       .addCase(contactCreateActions.hideConfirm, (state) => {
         state.status = ContactCreateStatus.pending;
       })
-      .addCase(contactCreateActions.concat, (state, action) => {
+      .addCase(contactCreateActions.concatItems, (state, action) => {
         state.items = state.items.concat(action.payload);
       }),
 });
 
 export const contactCreateReducer = contactCreateSlice.reducer;
 
-export function selectContactState(state: {
+export function selectContactCreateState(state: {
   [contactCreateName]: ContactCreateState;
 }) {
   return state[contactCreateName];
 }
 
-export const selectItems = createSelector(
-  selectContactState,
+export const selectContactCreateItems = createSelector(
+  selectContactCreateState,
   (state) => state.items
 );
 
-export const selectIsConfirmHidden = createSelector(
-  selectContactState,
-  (state) => state.status
+export const selectContactCreateIsHidden = createSelector(
+  selectContactCreateState,
+  (state) => state.status === ContactCreateStatus.idle
 );
 
 export { contactCreateActions };

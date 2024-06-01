@@ -19,7 +19,7 @@ export function* contactCreateSubmit(action: ContactCreateAction) {
 
   if (confirm) {
     const contact = action.payload;
-    yield put(contactCreateActions.concat(contact));
+    yield put(contactCreateActions.concatItems(contact));
     yield put(contactCreateActions.hideConfirm());
   }
 }

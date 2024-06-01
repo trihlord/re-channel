@@ -1,12 +1,12 @@
 import {
   contactCreateActions,
-  selectIsConfirmHidden,
+  selectContactCreateIsHidden,
 } from "@/features/contactCreate/slice";
 import { useDispatch, useSelector } from "react-redux";
 
 export function ContactCreateConfirm() {
   const dispatch = useDispatch();
-  const isHidden = useSelector(selectIsConfirmHidden);
+  const isHidden = useSelector(selectContactCreateIsHidden);
 
   function handleCancel() {
     dispatch(contactCreateActions.cancelSubmit());

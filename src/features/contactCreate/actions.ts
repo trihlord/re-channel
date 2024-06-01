@@ -9,4 +9,4 @@ export const hideConfirm = createAction("contactCreate/hideConfirm");
 export const cancelSubmit = createAction("contactCreate/cancelSubmit");
 export const confirmSubmit = createAction("contactCreate/confirmSubmit");
 
-export const concat = createAction<Contact>("contactCreate/concat");
+export const concatItems = createAction<Contact>("contactCreate/concatItems");
