@@ -1,7 +1,7 @@
+import * as contactCreateActions from "@/features/contactCreate/actions";
+import { ContactCreateStatus } from "@/features/contactCreate/data";
 import type { Contact } from "@/models/contact/data";
 import { createSelector, createSlice } from "@reduxjs/toolkit";
-import * as contactCreateActions from "./actions";
-import { ContactCreateStatus } from "./data";
 
 export const contactCreateName = "contactCreate";
 
@@ -22,10 +22,10 @@ const contactCreateSlice = createSlice({
   extraReducers: (build) =>
     build
       .addCase(contactCreateActions.showConfirm, (state) => {
-        state.status = ContactCreateStatus.idle;
+        state.status = ContactCreateStatus.pending;
       })
       .addCase(contactCreateActions.hideConfirm, (state) => {
-        state.status = ContactCreateStatus.pending;
+        state.status = ContactCreateStatus.idle;
       })
       .addCase(contactCreateActions.concatItems, (state, action) => {
         state.items = state.items.concat(action.payload);
@@ -45,9 +45,9 @@ export const selectContactCreateItems = createSelector(
   (state) => state.items
 );
 
-export const selectContactCreateIsHidden = createSelector(
+export const selectContactCreateStatusPending = createSelector(
   selectContactCreateState,
-  (state) => state.status === ContactCreateStatus.idle
+  (state) => state.status === ContactCreateStatus.pending
 );
 
 export { contactCreateActions };

@@ -1,12 +1,12 @@
 import {
   contactCreateActions,
-  selectContactCreateIsHidden,
+  selectContactCreateStatusPending,
 } from "@/features/contactCreate/slice";
 import { useDispatch, useSelector } from "react-redux";
 
 export function ContactCreateConfirm() {
   const dispatch = useDispatch();
-  const isHidden = useSelector(selectContactCreateIsHidden);
+  const isStatusPending = useSelector(selectContactCreateStatusPending);
 
   function handleCancel() {
     dispatch(contactCreateActions.cancelSubmit());
@@ -17,9 +17,11 @@ export function ContactCreateConfirm() {
   }
 
   return (
-    <div className={`flex-col gap-4 w-lg ${isHidden ? "hidden" : "flex"}`}>
-      <button onClick={handleCancel}>Cancel</button>
-      <button onClick={handleConfirm}>Confirm</button>
-    </div>
+    <dialog open={isStatusPending}>
+      <div className="flex flex-col gap-4 w-lg">
+        <button onClick={handleConfirm}>Confirm</button>
+        <button onClick={handleCancel}>Cancel</button>
+      </div>
+    </dialog>
   );
 }

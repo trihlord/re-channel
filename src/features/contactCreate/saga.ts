@@ -1,10 +1,13 @@
+import { contactCreateActions } from "@/features/contactCreate/slice";
+import type { SagaIterator } from "redux-saga";
 import { put, race, take } from "redux-saga/effects";
-import { contactCreateActions } from "./slice";
 
-interface ContactCreateAction
-  extends ReturnType<(typeof contactCreateActions)["submit"]> {}
+interface ContactCreateSubmitFormAction
+  extends ReturnType<(typeof contactCreateActions)["submitForm"]> {}
 
-export function* contactCreateSubmit(action: ContactCreateAction) {
+export function* contactCreateSubmitForm(
+  action: ContactCreateSubmitFormAction
+): SagaIterator {
   yield put(contactCreateActions.showConfirm());
 
   const [cancel, confirm] = yield race([
