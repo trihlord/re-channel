@@ -1,12 +1,12 @@
+import { useAppDispatch, useAppSelector } from "@/features/app/hooks";
 import {
   contactCreateActions,
   selectContactCreateStatusPending,
 } from "@/features/contactCreate/slice";
-import { useDispatch, useSelector } from "react-redux";
 
 export function ContactCreateConfirm() {
-  const dispatch = useDispatch();
-  const isStatusPending = useSelector(selectContactCreateStatusPending);
+  const dispatch = useAppDispatch();
+  const isStatusPending = useAppSelector(selectContactCreateStatusPending);
 
   function handleCancel() {
     dispatch(contactCreateActions.cancelSubmit());

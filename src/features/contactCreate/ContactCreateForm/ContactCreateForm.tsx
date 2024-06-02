@@ -1,12 +1,12 @@
+import { useAppDispatch } from "@/features/app/hooks";
+import { contactCreateActions } from "@/features/contactCreate/slice";
 import {
   ContactForm,
   type ContactFormEvent,
 } from "@/models/contact/ContactForm";
-import { useDispatch } from "react-redux";
-import { contactCreateActions } from "../slice";
 
 export function ContactCreateForm() {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   function handleSubmit(event: ContactFormEvent) {
     event.preventDefault();

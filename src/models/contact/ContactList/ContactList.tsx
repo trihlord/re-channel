@@ -1,4 +1,4 @@
-import { Contact } from "@/models/contact/data";
+import type { Contact } from "@/models/contact/data";
 
 export interface ContactListProps {
   items: Contact[];

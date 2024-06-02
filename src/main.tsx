@@ -1,11 +1,21 @@
-import { App } from "@/features/app/App";
+import { AppProvider } from "@/features/app/AppProvider";
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 
 import "virtual:uno.css";
 
-createRoot(document.getElementById("root")!).render(
+const rootElement = document.getElementById("root")!;
+
+const preloadedState = (() => {
+  try {
+    return JSON.parse(document.getElementById("preloaded-state")!.innerText);
+  } catch {
+    return undefined;
+  }
+})();
+
+createRoot(rootElement).render(
   <StrictMode>
-    <App />
+    <AppProvider preloadedState={preloadedState} />
   </StrictMode>
 );
