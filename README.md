@@ -1,5 +1,21 @@
 # Re Channel
 
+## Install Dependencies
+
+```shell
+npm ci
+```
+
+## Start Development Server
+
+```shell
+npm dev
+```
+
+## Development
+
+### Add New Features
+
 ```shell
 src/features/<featureName>
 ├── <FeatureNameComponent>
@@ -10,6 +26,8 @@ src/features/<featureName>
 ├── saga.ts
 └── slice.ts
 ```
+
+### Add New Models
 
 ```shell
 src/models/<modelName>

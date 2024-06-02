@@ -34,11 +34,9 @@ const contactCreateSlice = createSlice({
 
 export const contactCreateReducer = contactCreateSlice.reducer;
 
-export function selectContactCreateState(state: {
+export const selectContactCreateState = (state: {
   [contactCreateName]: ContactCreateState;
-}) {
-  return state[contactCreateName];
-}
+}) => state[contactCreateName];
 
 export const selectContactCreateItems = createSelector(
   selectContactCreateState,
