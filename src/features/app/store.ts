@@ -3,9 +3,9 @@ import { rootSaga } from "@/features/app/saga";
 import { configureStore } from "@reduxjs/toolkit";
 import reduxSaga from "redux-saga";
 
-export type AppPreloadedState = RootState | undefined;
+export type PreloadedState = RootState | undefined;
 
-export function setupStore(preloadedState: AppPreloadedState) {
+export function setupStore(preloadedState: PreloadedState) {
   const sagaMiddleware = reduxSaga();
 
   const store = configureStore({

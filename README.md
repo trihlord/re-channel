@@ -27,6 +27,9 @@ src/features/<featureName>
 └── slice.ts
 ```
 
+App feature imports `saga.ts` and `slice.ts` from it's features.
+App feature exports `hooks.ts` to it's features.
+
 ### Add New Models
 
 ```shell
