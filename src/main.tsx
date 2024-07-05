@@ -1,4 +1,5 @@
 import { AppProvider } from "@/features/app/AppProvider";
+import { AppRouter } from "@/features/app/AppRouter";
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 
@@ -16,6 +17,8 @@ const preloadedState = (() => {
 
 createRoot(rootElement).render(
   <StrictMode>
-    <AppProvider preloadedState={preloadedState} />
+    <AppProvider preloadedState={preloadedState}>
+      <AppRouter />
+    </AppProvider>
   </StrictMode>
 );

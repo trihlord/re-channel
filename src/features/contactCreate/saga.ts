@@ -2,7 +2,7 @@ import { contactCreateActions } from "@/features/contactCreate/slice";
 import type { SagaIterator } from "redux-saga";
 import { put, race, take } from "redux-saga/effects";
 
-interface ContactCreateSubmitFormAction
+export interface ContactCreateSubmitFormAction
   extends ReturnType<(typeof contactCreateActions)["submitForm"]> {}
 
 export function* contactCreateSubmitForm(
