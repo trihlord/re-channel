@@ -1,5 +1,6 @@
 {
   "cSpell.language": "en,ru",
+  "cSpell.words": ["unocss"],
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.formatOnSave": true,
   "editor.linkedEditing": true,
