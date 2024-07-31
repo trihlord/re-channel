@@ -7,11 +7,13 @@ export interface ContactListProps {
 export function ContactList({ items }: ContactListProps) {
   return (
     <ul>
-      {items.map((item, index) => (
-        <li key={index}>
-          <span>{item.nickname}</span>
-        </li>
-      ))}
+      {items.map(function (item, index) {
+        return (
+          <li key={index}>
+            <span>{item.nickname}</span>
+          </li>
+        );
+      })}
     </ul>
   );
 }

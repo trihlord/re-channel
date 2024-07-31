@@ -11,8 +11,9 @@ export function setupStore(preloadedState: PreloadedState) {
   const store = configureStore({
     preloadedState,
     reducer: rootReducer,
-    middleware: (getDefaultMiddleware) =>
-      getDefaultMiddleware().concat(sagaMiddleware),
+    middleware(getDefaultMiddleware) {
+      return getDefaultMiddleware().concat(sagaMiddleware);
+    },
   });
 
   sagaMiddleware.run(rootSaga);

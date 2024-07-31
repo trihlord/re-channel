@@ -7,7 +7,7 @@ import "virtual:uno.css";
 
 const rootElement = document.getElementById("root")!;
 
-const preloadedState = (() => {
+const preloadedState = (function () {
   try {
     return JSON.parse(document.getElementById("preloaded-state")!.innerText);
   } catch {

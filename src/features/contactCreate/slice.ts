@@ -1,7 +1,7 @@
 import * as contactCreateActions from "@/features/contactCreate/actions";
 import { ContactCreateStatus } from "@/features/contactCreate/data";
 import type { Contact } from "@/models/contact/data";
-import { createSelector, createSlice } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 
 export const contactCreateName = "contactCreate";
 
@@ -19,33 +19,30 @@ const contactCreateSlice = createSlice({
   name: contactCreateName,
   initialState: contactCreateInitialState,
   reducers: {},
-  extraReducers: (build) =>
-    build
-      .addCase(contactCreateActions.showConfirm, (state) => {
+  extraReducers(build) {
+    return build
+      .addCase(contactCreateActions.showConfirm, function (state) {
         state.status = ContactCreateStatus.pending;
       })
-      .addCase(contactCreateActions.hideConfirm, (state) => {
+      .addCase(contactCreateActions.hideConfirm, function (state) {
         state.status = ContactCreateStatus.idle;
       })
-      .addCase(contactCreateActions.concatItems, (state, action) => {
+      .addCase(contactCreateActions.concatItems, function (state, action) {
         state.items = state.items.concat(action.payload);
-      }),
+      });
+  },
+  selectors: {
+    items(state) {
+      return state.items;
+    },
+    isStatusPending(state) {
+      return state.status === ContactCreateStatus.pending;
+    },
+  },
 });
 
 export const contactCreateReducer = contactCreateSlice.reducer;
 
-export const selectContactCreateState = (state: {
-  [contactCreateName]: ContactCreateState;
-}) => state[contactCreateName];
-
-export const selectContactCreateItems = createSelector(
-  selectContactCreateState,
-  (state) => state.items
-);
-
-export const selectContactCreateStatusPending = createSelector(
-  selectContactCreateState,
-  (state) => state.status === ContactCreateStatus.pending
-);
+export const contactCreateSelectors = contactCreateSlice.selectors;
 
 export { contactCreateActions };

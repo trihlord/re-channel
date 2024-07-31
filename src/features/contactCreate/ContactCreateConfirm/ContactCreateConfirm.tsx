@@ -1,12 +1,14 @@
 import { useAppDispatch, useAppSelector } from "@/features/app/hooks";
 import {
   contactCreateActions,
-  selectContactCreateStatusPending,
+  contactCreateSelectors,
 } from "@/features/contactCreate/slice";
 
 export function ContactCreateConfirm() {
   const dispatch = useAppDispatch();
-  const isStatusPending = useAppSelector(selectContactCreateStatusPending);
+  const isStatusPending = useAppSelector(
+    contactCreateSelectors.isStatusPending
+  );
 
   function handleCancel() {
     dispatch(contactCreateActions.cancelSubmit());
