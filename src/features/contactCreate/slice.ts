@@ -1,9 +1,12 @@
-import * as contactCreateActions from "@/features/contactCreate/actions";
 import { ContactCreateStatus } from "@/features/contactCreate/data";
 import type { Contact } from "@/models/contact/data";
-import { createSlice } from "@reduxjs/toolkit";
+import { createAction, createSlice } from "@reduxjs/toolkit";
 
 export const contactCreateName = "contactCreate";
+
+const submitForm = createAction<Contact>(`${contactCreateName}/submitForm`);
+const cancelSubmit = createAction(`${contactCreateName}/cancelSubmit`);
+const confirmSubmit = createAction(`${contactCreateName}/confirmSubmit`);
 
 interface ContactCreateState {
   items: Contact[];
@@ -18,18 +21,16 @@ const contactCreateInitialState: ContactCreateState = {
 const contactCreateSlice = createSlice({
   name: contactCreateName,
   initialState: contactCreateInitialState,
-  reducers: {},
-  extraReducers(build) {
-    return build
-      .addCase(contactCreateActions.showConfirm, function (state) {
-        state.status = ContactCreateStatus.pending;
-      })
-      .addCase(contactCreateActions.hideConfirm, function (state) {
-        state.status = ContactCreateStatus.idle;
-      })
-      .addCase(contactCreateActions.concatItems, function (state, action) {
-        state.items = state.items.concat(action.payload);
-      });
+  reducers: {
+    concatItems(state, action) {
+      state.items = state.items.concat(action.payload);
+    },
+    openConfirm(state) {
+      state.status = ContactCreateStatus.pending;
+    },
+    closeConfirm(state) {
+      state.status = ContactCreateStatus.idle;
+    },
   },
   selectors: {
     items(state) {
@@ -41,8 +42,13 @@ const contactCreateSlice = createSlice({
   },
 });
 
+export const contactCreateActions = {
+  ...contactCreateSlice.actions,
+  submitForm,
+  cancelSubmit,
+  confirmSubmit,
+};
+
 export const contactCreateReducer = contactCreateSlice.reducer;
 
 export const contactCreateSelectors = contactCreateSlice.selectors;
-
-export { contactCreateActions };
