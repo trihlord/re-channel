@@ -1,6 +1,10 @@
 import { ContactCreateStatus } from "@/features/contactCreate/data";
 import type { Contact } from "@/models/contact/data";
-import { createAction, createSlice } from "@reduxjs/toolkit";
+import {
+  createAction,
+  createSlice,
+  type PayloadAction,
+} from "@reduxjs/toolkit";
 
 export const contactCreateName = "contactCreate";
 
@@ -22,7 +26,7 @@ const contactCreateSlice = createSlice({
   name: contactCreateName,
   initialState: contactCreateInitialState,
   reducers: {
-    concatItems(state, action) {
+    concatItems(state, action: PayloadAction<Contact | Contact[]>) {
       state.items = state.items.concat(action.payload);
     },
     openConfirm(state) {
