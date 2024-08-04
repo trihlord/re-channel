@@ -8,10 +8,6 @@ import {
 
 export const contactCreateName = "contactCreate";
 
-const submitForm = createAction<Contact>(`${contactCreateName}/submitForm`);
-const cancelSubmit = createAction(`${contactCreateName}/cancelSubmit`);
-const confirmSubmit = createAction(`${contactCreateName}/confirmSubmit`);
-
 interface ContactCreateState {
   items: Contact[];
   status: ContactCreateStatus;
@@ -45,6 +41,10 @@ const contactCreateSlice = createSlice({
     },
   },
 });
+
+const submitForm = createAction<Contact>(`${contactCreateName}/submitForm`);
+const cancelSubmit = createAction(`${contactCreateName}/cancelSubmit`);
+const confirmSubmit = createAction(`${contactCreateName}/confirmSubmit`);
 
 export const contactCreateActions = {
   ...contactCreateSlice.actions,
